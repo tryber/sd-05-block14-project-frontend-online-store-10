@@ -5,7 +5,8 @@ import Pesquisa from './components/Pesquisa';
 function App() {
   return (
     <div className="App">
-      <Pesquisa />   
+      <Pesquisa />
+      <p>CodeClimate</p>   
     </div>
   );
 }
