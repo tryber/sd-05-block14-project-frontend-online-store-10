@@ -1,14 +1,11 @@
 import React from 'react';
+import Pesquisa from '../../components/Pesquisa'
 
 class Home extends React.Component {
   render() {
     return (
-      <div className="temnota">
-        <h2>tem nota</h2>
-        <h2>tem nota</h2>
-        <h2>tem nota</h2>
-        <h2>tem nota</h2>
-        <h2>tem nota</h2>
+      <div>
+        <Pesquisa />
       </div>
     );
   }
