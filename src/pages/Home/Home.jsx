@@ -1,5 +1,5 @@
 import React from 'react';
-import Pesquisa from '../../components/Pesquisa'
+import Pesquisa from '../../components/Pesquisa';
 
 class Home extends React.Component {
   render() {
