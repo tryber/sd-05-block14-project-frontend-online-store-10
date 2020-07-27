@@ -1,0 +1,22 @@
+div{
+    border: 1px solid red;
+}
+
+.container{
+    display: flex;
+    
+}
+
+.categoria{
+    border: 1px solid black;
+    width: 25vw;
+    height: 100vh;
+
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 90vh;
+}
