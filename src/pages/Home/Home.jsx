@@ -28,7 +28,7 @@ class Home extends React.Component {
     return (
       <div className="container">
        <aside className="categoria">
-        <Categoria  dadosApi={categorias} data-testid="category" />
+        <Categoria  dadosApi={categorias} />
       </aside>
       <div className="conteudo">  
        <Pesquisa />
