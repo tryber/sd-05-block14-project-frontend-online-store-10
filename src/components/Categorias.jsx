@@ -7,7 +7,7 @@ import React from 'react';
         const { dadosApi} = this.props
         return(
          <div>
-           <label>Categorias
+           <label>Categorias:
              {dadosApi.map(elemento => <div><label>
                  <input type="radio" name="categoria" key={elemento.id} value={elemento.name} />{elemento.name} </label></div>)}
             </label>

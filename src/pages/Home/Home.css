@@ -1,6 +1,6 @@
-div{
+/* div{
     border: 1px solid red;
-}
+} */
 
 .container{
     display: flex;
@@ -10,7 +10,7 @@ div{
 .categoria{
     border: 1px solid black;
     width: 25vw;
-    height: 100vh;
+    margin-left: 20px;
 
 }
 
@@ -19,4 +19,7 @@ div{
     flex-direction: column;
     width: 80vw;
     height: 100vh;
+}
+.texto-central{
+    text-align: center;
 }
