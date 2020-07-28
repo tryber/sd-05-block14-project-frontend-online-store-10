@@ -1,4 +1,10 @@
 .pesquisa-input {
   border-radius: 10px;
+  margin-top: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 45px;
+  height: 30px;
+  font-size: 20px;
   margin: 15px;
 }
