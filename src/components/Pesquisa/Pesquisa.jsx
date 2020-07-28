@@ -4,7 +4,7 @@ import './Pesquisa.css';
 class Pesquisa extends React.Component {
   render() {
     return (
-      <input type="text" className="pesquisa-input"/>
+      <input type="text" className="pesquisa-input" />
     );
   }
 }
