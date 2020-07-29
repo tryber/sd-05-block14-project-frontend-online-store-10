@@ -4,7 +4,12 @@ class ShoppingCart extends React.Component {
   render() {
     return (
       <div>
-        <h2 className="text-center" data-testid="shopping-cart-empty-message" >Seu carrinho está vazio</h2>
+        <h2
+          className="text-center"
+          data-testid="shopping-cart-empty-message"
+        >
+          Seu carrinho está vazio
+        </h2>
       </div>
     );
   }
