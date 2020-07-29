@@ -1,16 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Cart from '../cart.png';
 import * as api from '../../services/api';
 import './Home.css';
 import Pesquisa from '../../components/Pesquisa/Pesquisa';
 import Categorias from '../../components/Categorias';
+import CartLink from '../../components/CartLink/CartLink';
+import Items from '../../components/Items/Items';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { categorias: [] };
+    this.state = { 
+      categorias: [],
+      valorDoInput: '',
+    };
+
+    this.manipularInput = this.manipularInput.bind(this);
   }
 
   componentDidMount() {
@@ -20,8 +25,14 @@ class Home extends React.Component {
       .catch((erro) => console.error(erro.message));
   }
 
+  manipularInput(event) {
+    const valorDoInput = event.target.value;
+    this.setState({ valorDoInput });
+  }
+
   render() {
-    const { categorias } = this.state;
+    const { categorias, valorDoInput } = this.state;
+    const items = ['Produto 1', 'Produto 2', 'Produto 3'];
 
     return (
       <div className="container">
@@ -29,15 +40,17 @@ class Home extends React.Component {
           <Categorias categories={categorias} />
         </aside>
         <div className="conteudo">
-          <Pesquisa />
-          <h3 data-testid="home-initial-message" className="texto-central">
+          <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
-          </h3>
-        </div>
-        <div>
-          <Link to="/cart" data-testid="shopping-cart-button">
-            <img src={Cart} width="30px" height="30px" alt="icone carrinho" />
-          </Link>
+          </p>
+          <div className="row">
+            <Pesquisa manipularInput={(event) => this.manipularInput(event)} valorDoInput={valorDoInput} />
+            <button data-testid="query-button" type="button" onClick={() => console.log(valorDoInput)}>
+              Api
+            </button>
+            <CartLink />
+          </div>
+          <Items items={items} />
         </div>
       </div>
     );
