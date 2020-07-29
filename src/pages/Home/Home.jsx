@@ -1,10 +1,10 @@
 import React from 'react';
-import Pesquisa from '../../components/Pesquisa/Pesquisa';
-import './Home.css'
-import Categoria from '../../components/Categorias';
-import * as api from '../../services/api';
+import { Link } from 'react-router-dom';
 import Cart from '../cart.png';
-import { Link } from 'react-router-dom'
+import * as api from '../../services/api';
+import './Home.css';
+import Pesquisa from '../../components/Pesquisa/Pesquisa';
+import Categorias from '../../components/Categorias';
 
 class Home extends React.Component {
   constructor(props) {
@@ -12,7 +12,6 @@ class Home extends React.Component {
 
     this.state = {
       categorias: [],
-
     }
   }
 
@@ -20,7 +19,7 @@ class Home extends React.Component {
     api
       .getCategories()
       .then(categorias => this.setState({ categorias }))
-    //.catch(erro => console.error(erro.message));
+      .catch(erro => console.error(erro.message));
   }
 
   render() {
@@ -29,7 +28,7 @@ class Home extends React.Component {
     return (
       <div className="container">
         <aside className="categoria">
-          <Categoria dadosApi={categorias} />
+          <Categorias categories={categorias} />
         </aside>
         <div className="conteudo">
           <Pesquisa />
