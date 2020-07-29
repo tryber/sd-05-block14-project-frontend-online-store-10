@@ -10,7 +10,7 @@ class Home extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
+    this.state = {
       categorias: [],
       valorDoInput: '',
     };
@@ -44,8 +44,15 @@ class Home extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
           <div className="row">
-            <Pesquisa manipularInput={(event) => this.manipularInput(event)} valorDoInput={valorDoInput} />
-            <button data-testid="query-button" type="button" onClick={() => console.log(valorDoInput)}>
+            <Pesquisa
+              manipularInput={(event) => this.manipularInput(event)}
+              valorDoInput={valorDoInput}
+            />
+            <button
+              data-testid="query-button"
+              type="button"
+              onClick={() => console.log(valorDoInput)}
+            >
               Api
             </button>
             <CartLink />
