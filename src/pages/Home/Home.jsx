@@ -19,7 +19,6 @@ class Home extends React.Component {
     this.apiButton = this.apiButton.bind(this);
     this.manipularInput = this.manipularInput.bind(this);
     this.manipularCategoria = this.manipularCategoria.bind(this);
-
   }
 
   componentDidMount() {
