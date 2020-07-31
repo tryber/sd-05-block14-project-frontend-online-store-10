@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Categorias = (props) => {
-  const { categories } = props;
+  const { categories, setCategoryId } = props;
   return (
     <div>
-      <p>Categorias:</p>
+      <p>Categoria:</p>
       {categories.map(({ name, id }) => (
         <div key={id}>
           <label data-testid="category" htmlFor={id}>
@@ -13,6 +13,7 @@ const Categorias = (props) => {
               name="category"
               id={id}
               value={name}
+              onClick={setCategoryId}
             />
             {name}
           </label>

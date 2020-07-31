@@ -13,9 +13,13 @@ class Home extends React.Component {
     this.state = {
       categorias: [],
       valorDoInput: '',
+      items: [],
     };
 
+    this.apiButton = this.apiButton.bind(this);
     this.manipularInput = this.manipularInput.bind(this);
+    this.manipularCategoria = this.manipularCategoria.bind(this);
+
   }
 
   componentDidMount() {
@@ -25,34 +29,44 @@ class Home extends React.Component {
       .catch((erro) => console.error(erro.message));
   }
 
+  async apiButton() {
+    const { categoryId, inputValue } = this.state;
+    return api
+      .getProductsFromCategoryAndQuery(categoryId, inputValue)
+      .then((data) => data.results)
+      .then((items) => this.setState({ items }));
+  }
+
   manipularInput(event) {
     const valorDoInput = event.target.value;
     this.setState({ valorDoInput });
   }
 
-  render() {
-    const { categorias, valorDoInput } = this.state;
-    const items = ['Produto 1', 'Produto 2', 'Produto 3'];
+  async manipularCategoria(event) {
+    const categoryId = event.target.id;
+    await this.setState({ categoryId });
+    this.apiButton();
+  }
 
+  render() {
+    const { inputValue, notFound, categorias, items } = this.state;
+    if (notFound) return <div className="not-found">Not found!</div>;
     return (
       <div className="container">
         <aside className="categoria">
-          <Categorias categories={categorias} />
+          <Categorias
+            setCategoryId={(event) => this.manipularCategoria(event)}
+            refreshItems={this.apiButton}
+            categories={categorias}
+          />
         </aside>
         <div className="conteudo">
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
           <div className="row">
-            <Pesquisa
-              manipularInput={(event) => this.manipularInput(event)}
-              valorDoInput={valorDoInput}
-            />
-            <button
-              data-testid="query-button"
-              type="button"
-              onClick={() => console.log(valorDoInput)}
-            >
+            <Pesquisa handleInput={(event) => this.manipularInput(event)} inputValue={inputValue} />
+            <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
               Api
             </button>
             <CartLink />
