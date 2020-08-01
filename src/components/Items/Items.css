@@ -1,0 +1,12 @@
+.items-container {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+.item {
+  border: 1px solid black;
+  margin: 1%;
+  padding: 1%;
+  width: 150px;
+}

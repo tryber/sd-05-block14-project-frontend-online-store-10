@@ -1,42 +1,79 @@
 import React from 'react';
-import Pesquisa from '../../components/Pesquisa/Pesquisa';
-import './Home.css';
-import Categoria from '../../components/Categorias';
+
 import * as api from '../../services/api';
-import Cart from '../cart.png';
-import { Link } from 'react-router-dom';
+import './Home.css';
+import Pesquisa from '../../components/Pesquisa/Pesquisa';
+import Categorias from '../../components/Categorias';
+import CartLink from '../../components/CartLink/CartLink';
+import Items from '../../components/Items/Items';
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       categorias: [],
+
+      valorDoInput: '',
+      items: [],
     };
+
+    this.apiButton = this.apiButton.bind(this);
+    this.manipularInput = this.manipularInput.bind(this);
+    this.manipularCategoria = this.manipularCategoria.bind(this);
   }
 
   componentDidMount() {
-    api.getCategories().then((categorias) => this.setState({ categorias }));
-    //.catch(erro => console.error(erro.message));
+    api
+      .getCategories()
+      .then((categorias) => this.setState({ categorias }))
+      .catch((erro) => console.error(erro.message));
+  }
+
+  async apiButton() {
+    const { categoryId, inputValue } = this.state;
+    return api
+      .getProductsFromCategoryAndQuery(categoryId, inputValue)
+      .then((data) => data.results)
+      .then((items) => this.setState({ items }));
+  }
+
+  manipularInput(event) {
+    const valorDoInput = event.target.value;
+    this.setState({ valorDoInput });
+  }
+
+  async manipularCategoria(event) {
+    const categoryId = event.target.id;
+    await this.setState({ categoryId });
+    this.apiButton();
   }
 
   render() {
-    const { categorias } = this.state;
-
+    const { inputValue, notFound, categorias, items } = this.state;
+    if (notFound) return <div className="not-found">Not found!</div>;
     return (
       <div className="container">
         <aside className="categoria">
-          <Categoria dadosApi={categorias} />
+          <Categorias
+            setCategoryId={(event) => this.manipularCategoria(event)}
+            refreshItems={this.apiButton}
+            categories={categorias}
+          />
         </aside>
         <div className="conteudo">
-          <Pesquisa />
-          <h3 data-testid="home-initial-message" className="texto-central">
+          <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
-          </h3>
-        </div>
-        <div>
-          <Link to="/cart" data-testid="shopping-cart-button">
-            <img src={Cart} width="30px" height="30px" alt="icone carrinho" />
-          </Link>
+
+          </p>
+          <div className="row">
+            <Pesquisa handleInput={(event) => this.manipularInput(event)} inputValue={inputValue} />
+            <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
+              Api
+            </button>
+            <CartLink />
+          </div>
+          <Items items={items} />
         </div>
       </div>
     );

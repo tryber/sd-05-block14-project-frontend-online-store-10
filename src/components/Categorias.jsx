@@ -1,23 +1,28 @@
 import React from 'react';
 
-class Categoria extends React.Component {
-  render() {
-    console.log(this.props.dadosApi);
-    const { dadosApi } = this.props;
-    return (
-      <div>
-        <label>Categorias:</label>
-        {dadosApi.map((elemento) => {
-          const { id, name } = elemento;
-          return (
-            <div data-testid="category" key={`l${id}`}>
-              <input type="radio" name="categoria" key={id} id={id} value={name} />
-              <label htmlFor={id}>{name}</label>
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-}
-export default Categoria;
+const Categorias = (props) => {
+  const { categories, setCategoryId } = props;
+  return (
+    <div>
+      <p>Categoria:</p>
+      {categories.map(({ name, id }) => (
+        <div key={id}>
+          <label data-testid="category" htmlFor={id}>
+            <input
+              type="radio"
+              name="category"
+              id={id}
+              value={name}
+              onClick={setCategoryId}
+            />
+            {name}
+          </label>
+          <br />
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Categorias;
+
