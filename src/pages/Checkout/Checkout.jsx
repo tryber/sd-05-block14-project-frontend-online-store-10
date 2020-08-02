@@ -2,6 +2,8 @@ import React from 'react';
 
 class Checkout extends React.Component {
   render() {
+    const { cart } = this.props;
+    console.log(cart)
     return (
       <div>
         <h2>Valor Aleatório</h2>

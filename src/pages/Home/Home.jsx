@@ -13,14 +13,17 @@ class Home extends React.Component {
 
     this.state = {
       categorias: [],
-
       valorDoInput: '',
       items: [],
+      cart: [],
     };
 
     this.apiButton = this.apiButton.bind(this);
     this.manipularInput = this.manipularInput.bind(this);
     this.manipularCategoria = this.manipularCategoria.bind(this);
+    this.addingToCart = this.addingToCart.bind(this);
+    this.setLocalStorage = this.setLocalStorage.bind(this);
+
   }
 
   componentDidMount() {
@@ -49,6 +52,22 @@ class Home extends React.Component {
     this.apiButton();
   }
 
+  async addingToCart(item,quantity) {
+    const arr = this.state.cart;
+    const index = arr.findIndex(prod => prod.id === item.id )
+
+    index >= 0 
+      ? arr[index].quantity += 1
+      : arr.push(Object.assign({}, item, {quantity}))
+
+    await this.setState({ cart: arr })
+    await this.setLocalStorage();
+  }
+
+  setLocalStorage(){
+    localStorage.setItem('Cart', JSON.stringify(this.state.cart))
+  }
+
   render() {
     const { inputValue, notFound, categorias, items } = this.state;
     if (notFound) return <div className="not-found">Not found!</div>;
@@ -71,9 +90,9 @@ class Home extends React.Component {
             <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
               Api
             </button>
-            <CartLink />
+            <CartLink cart={ this.state.cart }/>
           </div>
-          <Items items={items} />
+          <Items items={items} addingToCart={this.addingToCart}/>
         </div>
       </div>
     );

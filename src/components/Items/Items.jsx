@@ -7,7 +7,7 @@ import AddToCart from '../AddToCart/AddToCart';
 import './Items.css';
 
 const Item = (props) => {
-  const { items } = props;
+  const { items, addingToCart } = props;
   return (
     <div className="items-container">
       {items.map((item) => (
@@ -23,6 +23,7 @@ const Item = (props) => {
           <AddToCart
             dataTestid="product-add-to-cart"
             item={item}
+            addingToCart={addingToCart}
             quantity={1}
             plusQuant={false}
           />
