@@ -14,7 +14,7 @@ class ProductDetail extends React.Component {
   setLocalStorage() {
     localStorage.setItem('Cart', JSON.stringify(this.state.cart));
   }
-  
+
   render() {
     const { location } = this.props;
     const { item } = location;
