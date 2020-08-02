@@ -1,22 +1,29 @@
-div{
-    border: 1px solid red;
+.container {
+  display: flex;
+  justify-content: space-around;
+  padding: 1%;
 }
 
-.container{
-    display: flex;
-    
-}
-
-.categoria{
-    border: 1px solid black;
-    width: 25vw;
-    height: 100vh;
-
+.categoria {
+  border: 1px solid black;
+  margin: 1%;
+  padding: 1%;
+  width: 25vw;
 }
 
 .conteudo {
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-    height: 100vh;
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  margin: 1%;
+  padding: 1%;
+  width: 80vw;
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 90%;
 }
