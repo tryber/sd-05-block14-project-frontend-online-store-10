@@ -1,5 +1,4 @@
 import React from 'react';
-
 import * as api from '../../services/api';
 import './Home.css';
 import Pesquisa from '../../components/Pesquisa/Pesquisa';
@@ -10,20 +9,21 @@ import Items from '../../components/Items/Items';
 class Home extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       categorias: [],
       valorDoInput: '',
       items: [],
       cart: [],
     };
-
     this.apiButton = this.apiButton.bind(this);
     this.manipularInput = this.manipularInput.bind(this);
     this.manipularCategoria = this.manipularCategoria.bind(this);
     this.addingToCart = this.addingToCart.bind(this);
     this.setLocalStorage = this.setLocalStorage.bind(this);
-
+  }
+  
+  setLocalStorage() {
+    localStorage.setItem('Cart', JSON.stringify(this.state.cart));
   }
 
   componentDidMount() {
@@ -52,20 +52,16 @@ class Home extends React.Component {
     this.apiButton();
   }
 
-  async addingToCart(item,quantity) {
+  async addingToCart(item, quantity) {
     const arr = this.state.cart;
-    const index = arr.findIndex(prod => prod.id === item.id )
+    const index = arr.findIndex((prod) => prod.id === item.id);
 
-    index >= 0 
-      ? arr[index].quantity += 1
-      : arr.push(Object.assign({}, item, {quantity}))
+    index >= 0 ?
+      arr[index].quantity += 1 :
+      arr.push(Object.assign({}, item, { quantity }));
 
-    await this.setState({ cart: arr })
+    await this.setState({ cart: arr });
     await this.setLocalStorage();
-  }
-
-  setLocalStorage(){
-    localStorage.setItem('Cart', JSON.stringify(this.state.cart))
   }
 
   render() {
@@ -90,9 +86,9 @@ class Home extends React.Component {
             <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
               Api
             </button>
-            <CartLink cart={ this.state.cart }/>
+            <CartLink cart={this.state.cart} />
           </div>
-          <Items items={items} addingToCart={this.addingToCart}/>
+          <Items items={items} addingToCart={this.addingToCart} />
         </div>
       </div>
     );

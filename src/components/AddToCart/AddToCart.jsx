@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-function addtocart (item, addingToCart, quantity ){
-  addingToCart(item, quantity)  
-}
+function addtocart(item, addingToCart, quantity) {
+  addingToCart(item, quantity);  
+};
 
 const AddToCart = (props) => {
-  const { dataTestid, item, quantity, plusQuant, addingToCart } = props;
+  const { dataTestid, item, quantity, addingToCart } = props;
   return (
     <div>
       <button data-testid={dataTestid} onClick={() => addtocart(item, addingToCart, quantity)}>
@@ -13,6 +13,6 @@ const AddToCart = (props) => {
       </button>
     </div>
   );
-}
+};
 
 export default AddToCart;
