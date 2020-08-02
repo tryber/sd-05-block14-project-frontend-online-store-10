@@ -15,7 +15,7 @@ const Item = (props) => {
           <p>{item.title}</p>
           <Link
             data-testid="product-detail-link"
-            to={{ pathname: `/${item.id}`, item }}
+            to={{ pathname: `/${item.id}`, item, addingToCart }}
           >
             <img src={item.thumbnail} alt="item" />
           </Link>

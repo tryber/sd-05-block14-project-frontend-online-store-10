@@ -7,24 +7,23 @@ class ProductDetail extends React.Component {
     super(props);
 
     this.state = { cart: [] };
-    this.addingToCart = this.addingToCart.bind(this);
+    this.addingToCart = this.adding.bind(this);
     this.setLocalStorage = this.setLocalStorage.bind(this);
   }
 
   setLocalStorage() {
     localStorage.setItem('Cart', JSON.stringify(this.state.cart));
   }
+  async adding(i, q) {
+    const prods = this.state.cart;
+    const pos = prods.findIndex((prods) => prods.id === i.id);
 
-  async addingToCart(item, quantity) {
-    const arr = this.state.cart;
-    const index = arr.findIndex((prod) => prod.id === item.id);
-
-    if (index >= 0) {
-      arr[index].quantity += 1;
+    if (pos >= 0) {
+      prods[pos].q += 1;
     } else {
-      arr.push(Object.assign({}, item, { quantity }));
+      prods.push(Object.assign({}, i, { q }));
     }
-    await this.setState({ cart: arr });
+    await this.setState({ cart: prods });
     await this.setLocalStorage();
   }
 
@@ -46,7 +45,7 @@ class ProductDetail extends React.Component {
         <AddToCart
           dataTestid="product-detail-add-to-cart"
           item={item}
-          addingToCart={this.addingToCart}
+          addingToCart={this.adding}
           quantity={1}
         />
         <CartLink cart={this.state.cart} />

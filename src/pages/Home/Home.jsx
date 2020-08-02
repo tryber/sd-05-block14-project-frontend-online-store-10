@@ -27,7 +27,7 @@ class Home extends React.Component {
       .getCategories()
       .then((categorias) => this.setState({ categorias }))
       .catch((erro) => console.error(erro.message));
-  }
+    }
 
   setLocalStorage() {
     localStorage.setItem('Cart', JSON.stringify(this.state.cart));
