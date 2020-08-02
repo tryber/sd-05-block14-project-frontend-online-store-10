@@ -31,12 +31,12 @@ class ProductDetail extends React.Component {
           </p>
         </div>
         <AddToCart
-            dataTestid="product-detail-add-to-cart"
-            item={item}
-            addingToCart={this.addingToCart}
-            quantity={1}
+          dataTestid="product-detail-add-to-cart"
+          item={item}
+          addingToCart={this.addingToCart}
+          quantity={1}
         />
-        <CartLink cart={this.state.cart}/>
+        <CartLink cart={this.state.cart} />
       </div>
     );
   }
