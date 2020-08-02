@@ -1,4 +1,5 @@
 import React from 'react';
+
 import * as api from '../../services/api';
 import './Home.css';
 import Pesquisa from '../../components/Pesquisa/Pesquisa';
@@ -12,6 +13,7 @@ class Home extends React.Component {
 
     this.state = {
       categorias: [],
+
       valorDoInput: '',
       items: [],
     };
@@ -62,6 +64,7 @@ class Home extends React.Component {
         <div className="conteudo">
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
+
           </p>
           <div className="row">
             <Pesquisa handleInput={(event) => this.manipularInput(event)} inputValue={inputValue} />
