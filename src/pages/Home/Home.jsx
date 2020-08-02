@@ -24,10 +24,10 @@ class Home extends React.Component {
 
   componentDidMount() {
     api
-    .getCategories()
-    .then((categorias) => this.setState({ categorias }))
+      .getCategories()
+      .then((categorias) => this.setState({ categorias }))
       .catch((erro) => console.error(erro.message));
-    }
+  }
 
   setLocalStorage() {
     localStorage.setItem('Cart', JSON.stringify(this.state.cart));
@@ -56,7 +56,7 @@ class Home extends React.Component {
     const index = arr.findIndex((prod) => prod.id === item.id);
 
     if (index >= 0) {
-      arr[index].quantity += 1
+      arr[index].quantity += 1;
     } else {
       arr.push(Object.assign({}, item, { quantity }));
     }
