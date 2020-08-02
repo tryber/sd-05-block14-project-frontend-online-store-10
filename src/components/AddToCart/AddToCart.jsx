@@ -1,8 +1,8 @@
 import React from 'react';
 
 function addtocart(item, addingToCart, quantity) {
-  addingToCart(item, quantity);  
-};
+  addingToCart(item, quantity);
+}
 
 const AddToCart = (props) => {
   const { dataTestid, item, quantity, addingToCart } = props;

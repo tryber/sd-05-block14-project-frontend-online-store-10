@@ -21,18 +21,17 @@ class Home extends React.Component {
     this.addingToCart = this.addingToCart.bind(this);
     this.setLocalStorage = this.setLocalStorage.bind(this);
   }
-  
-  setLocalStorage() {
-    localStorage.setItem('Cart', JSON.stringify(this.state.cart));
-  }
 
   componentDidMount() {
     api
-      .getCategories()
-      .then((categorias) => this.setState({ categorias }))
+    .getCategories()
+    .then((categorias) => this.setState({ categorias }))
       .catch((erro) => console.error(erro.message));
-  }
+    }
 
+  setLocalStorage() {
+    localStorage.setItem('Cart', JSON.stringify(this.state.cart));
+  }
   async apiButton() {
     const { categoryId, inputValue } = this.state;
     return api
@@ -56,10 +55,11 @@ class Home extends React.Component {
     const arr = this.state.cart;
     const index = arr.findIndex((prod) => prod.id === item.id);
 
-    index >= 0 ?
-      arr[index].quantity += 1 :
+    if (index >= 0) {
+      arr[index].quantity += 1
+    } else {
       arr.push(Object.assign({}, item, { quantity }));
-
+    }
     await this.setState({ cart: arr });
     await this.setLocalStorage();
   }

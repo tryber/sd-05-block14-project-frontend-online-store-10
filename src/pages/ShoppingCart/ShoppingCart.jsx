@@ -4,16 +4,16 @@ import ItemCart from './ItemCart';
 
 const ShoppingCart = (props) => {
   let ct = JSON.parse(localStorage.getItem('Cart'));
-  if(props.location.cart){
+  if (props.location.cart) {
     ct = props.location.cart;
   }
   if (ct) {
-    if(ct.length > 0){
+    if (ct.length > 0) {
       return (
-        <div> 
-          { ct.map(prod => <ItemCart produto={prod} />)}
+        <div>
+          { ct.map((prod) => <ItemCart produto={prod} />)}
         </div>
-      )
+      );
     }
   }
 
@@ -29,6 +29,6 @@ const ShoppingCart = (props) => {
 
     </div>
   );
-}
+};
 
 export default ShoppingCart;
