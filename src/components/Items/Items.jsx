@@ -25,7 +25,6 @@ const Item = (props) => {
             item={item}
             addingToCart={addingToCart}
             quantity={1}
-            plusQuant={false}
           />
         </div>
       ))}

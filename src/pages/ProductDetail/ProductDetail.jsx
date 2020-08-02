@@ -15,6 +15,19 @@ class ProductDetail extends React.Component {
     localStorage.setItem('Cart', JSON.stringify(this.state.cart));
   }
 
+  async addingToCart(item, quantity) {
+    const arr = this.state.cart;
+    const index = arr.findIndex((prod) => prod.id === item.id);
+
+    if (index >= 0) {
+      arr[index].quantity += 1;
+    } else {
+      arr.push(Object.assign({}, item, { quantity }));
+    }
+    await this.setState({ cart: arr });
+    await this.setLocalStorage();
+  }
+
   render() {
     const { location } = this.props;
     const { item } = location;
