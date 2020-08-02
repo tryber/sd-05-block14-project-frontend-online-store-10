@@ -1,6 +1,20 @@
 import React from 'react';
+import CartLink from '../../components/CartLink/CartLink';
+import AddToCart from '../../components/AddToCart/AddToCart';
 
 class ProductDetail extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { cart: [] };
+    this.addingToCart = this.addingToCart.bind(this);
+    this.setLocalStorage = this.setLocalStorage.bind(this);
+  }
+
+  setLocalStorage() {
+    localStorage.setItem('Cart', JSON.stringify(this.state.cart));
+  }
+  
   render() {
     const { location } = this.props;
     const { item } = location;
@@ -16,6 +30,13 @@ class ProductDetail extends React.Component {
             Localização:{item.address.city_name},{item.address.state_name}
           </p>
         </div>
+        <AddToCart
+            dataTestid="product-detail-add-to-cart"
+            item={item}
+            addingToCart={this.addingToCart}
+            quantity={1}
+        />
+        <CartLink cart={this.state.cart}/>
       </div>
     );
   }

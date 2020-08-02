@@ -11,7 +11,7 @@ const ShoppingCart = (props) => {
     if (ct.length > 0) {
       return (
         <div>
-          { ct.map((prod) => <ItemCart produto={prod} />)}
+          { ct.map((prod) => <ItemCart key={prod.id} produto={prod} />)}
         </div>
       );
     }
