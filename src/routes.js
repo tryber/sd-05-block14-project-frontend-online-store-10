@@ -1,21 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
 import { Home, ShoppingCart, ProductDetail, Checkout } from './pages';
 
 class Routes extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cart: [],
-    }
+    this.state = { cart: [] };
     this.addingToCart = this.addingToCart.bind(this);
     this.setLocalStorage = this.setLocalStorage.bind(this);
   }
   componentDidMount() {
     if (localStorage.getItem('cart') !== null) {
-      this.setState({ cart: JSON.parse(localStorage.getItem('cart')) });
-    } 
+      const local = JSON.parse(localStorage.getItem('cart'));
+      this.setState({ cart: local });
+    }
   }
   componentWillUnmount() {
     this.setLocalStorage();
@@ -35,24 +33,18 @@ class Routes extends React.Component {
     await this.setLocalStorage();
   }
   render() {
-    const { cart } = this.state;
+    const { cart: c } = this.state;
+    const f = this.func;
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/"
-            render={(props) =>
-              <Home {...props} cart={cart} func={this.addingToCart} />}
-          />
+          <Route exact path="/" render={(props) => <Home {...props} cart={c} func={f} />} />
           <Route exact path="/cart" component={ShoppingCart} />
           <Route exact path="/checkout" component={Checkout} />
-          <Route path="/:id"
-            render={(props) =>
-              <ProductDetail {...props} cart={cart} func={this.addingToCart} />} />
-          { /* <Route path="/" component={} /> */}
+          <Route path="/:id" render={(props) => <ProductDetail {...props} cart={c} func={f} />} />
         </Switch>
       </BrowserRouter>
-
-    )
+    );
   }
-};
+}
 export default Routes;

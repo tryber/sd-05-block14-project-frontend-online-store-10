@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './ShoppingCart.css';
 import ItemCart from './ItemCart';
 
@@ -12,7 +12,7 @@ const ShoppingCart = (props) => {
     if (ct.length > 0) {
       return (
         <div>
-          <Link to='/'>Home</Link>
+          <Link to="/">Home</Link>
           { ct.map((prod) => <ItemCart key={prod.id} produto={prod} />)}
         </div>
       );
@@ -21,7 +21,7 @@ const ShoppingCart = (props) => {
 
   return (
     <div>
-      <Link to='/'>Home</Link>
+      <Link to="/">Home</Link>
       <h2
         className="text-center"
         data-testid="shopping-cart-empty-message"

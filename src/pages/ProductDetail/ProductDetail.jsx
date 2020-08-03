@@ -27,7 +27,8 @@ class ProductDetail extends React.Component {
             Localização:{item.address.city_name},{item.address.state_name}
           </p>
         </div>
-        <AddToCart dataTestid="product-detail-add-to-cart" item={item} addingToCart={this.props.func} quantity={1} />
+        <AddToCart dataTestid="product-detail-add-to-cart" item={item}
+          addingToCart={this.props.func} quantity={1} />
         <CartLink cart={this.props.cart} />
       </div>
     );
