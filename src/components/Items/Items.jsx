@@ -12,12 +12,14 @@ const Item = (props) => {
     <div className="items-container">
       {items.map((item) => (
         <div data-testid="product" key={item.id} className="item">
-          <Link data-testid="product-detail-link" to={{ pathname: `/${item.id}`, item }}>
+          <Link data-testid="product-detail-link"
+            to={{ pathname: `/${item.id}`, item }}>
             <p>{item.title}</p>
             <img src={item.thumbnail} alt="item" />
           </Link>
           <p>{`R$ ${item.price.toFixed(2)}`}</p>
-          <AddToCart dataTestid="product-add-to-cart" item={item} addingToCart={addingToCart} quantity={1} />
+          <AddToCart dataTestid="product-add-to-cart" item={item}
+            addingToCart={addingToCart} quantity={1} />
         </div>
       ))}
     </div>
