@@ -7,7 +7,7 @@ import AddToCart from '../AddToCart/AddToCart';
 import './Items.css';
 
 const Item = (props) => {
-  const { items } = props;
+  const { items, addingToCart } = props;
   return (
     <div className="items-container">
       {items.map((item) => (
@@ -17,7 +17,7 @@ const Item = (props) => {
             <img src={item.thumbnail} alt="item" />
           </Link>
           <p>{`R$ ${item.price.toFixed(2)}`}</p>
-          <AddToCart dataTestid="product-add-to-cart" item={item} quantity={1} plusQuant={false} />
+          <AddToCart dataTestid="product-add-to-cart" item={item} addingToCart={addingToCart} quantity={1} />
         </div>
       ))}
     </div>

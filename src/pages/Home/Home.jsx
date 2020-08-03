@@ -9,16 +9,18 @@ import Items from '../../components/Items/Items';
 class Home extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       categorias: [],
       valorDoInput: '',
       items: [],
+      cart: [],
     };
-
     this.apiButton = this.apiButton.bind(this);
     this.manipularInput = this.manipularInput.bind(this);
     this.manipularCategoria = this.manipularCategoria.bind(this);
+    this.addingToCart = this.addingToCart.bind(this);
+
+    console.log(props);
   }
 
   componentDidMount() {
@@ -47,30 +49,28 @@ class Home extends React.Component {
     this.apiButton();
   }
 
+  async addingToCart(item, quantity) {
+    this.props.func(item, quantity);
+  }
+
   render() {
     const { inputValue, notFound, categorias, items } = this.state;
     if (notFound) return <div className="not-found">Not found!</div>;
     return (
       <div className="container">
         <aside className="categoria">
-          <Categorias
-            setCategoryId={(event) => this.manipularCategoria(event)}
-            refreshItems={this.apiButton}
-            categories={categorias}
-          />
+          <Categorias setCategoryId={(event) => this.manipularCategoria(event)} refreshItems={this.apiButton} categories={categorias} />
         </aside>
         <div className="conteudo">
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
+          <p data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</p>
           <div className="row">
             <Pesquisa handleInput={(event) => this.manipularInput(event)} inputValue={inputValue} />
             <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
               Api
             </button>
-            <CartLink />
+            <CartLink cart={this.props.cart} />
           </div>
-          <Items items={items} />
+          <Items items={items} addingToCart={this.props.func} />
         </div>
       </div>
     );
