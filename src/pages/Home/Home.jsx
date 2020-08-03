@@ -19,8 +19,6 @@ class Home extends React.Component {
     this.manipularInput = this.manipularInput.bind(this);
     this.manipularCategoria = this.manipularCategoria.bind(this);
     this.addingToCart = this.addingToCart.bind(this);
-
-    console.log(props);
   }
 
   componentDidMount() {

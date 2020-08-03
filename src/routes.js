@@ -38,7 +38,7 @@ class Routes extends React.Component {
       }
     }
     const { cart: c } = this.state;
-    const f = this.func;
+    const f = this.addingToCart;
     return (
       <BrowserRouter>
         <Switch>
