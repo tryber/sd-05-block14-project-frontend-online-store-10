@@ -17,7 +17,7 @@ class Home extends React.Component {
     };
     this.apiButton = this.apiButton.bind(this);
     this.manipularInput = this.manipularInput.bind(this);
-    this.manipularCategoria = this.manCat.bind(this);
+    this.manipularCategoria = this.manipularCategoria.bind(this);
     this.addingToCart = this.addingToCart.bind(this);
 
     console.log(props);
@@ -42,8 +42,8 @@ class Home extends React.Component {
     const valorDoInput = event.target.value;
     this.setState({ valorDoInput });
   }
-  // manCat = Manipulador de categoria
-  async manCat(event) {
+
+  async manipularCategoria(event) {
     const categoryId = event.target.id;
     await this.setState({ categoryId });
     this.apiButton();
@@ -59,7 +59,11 @@ class Home extends React.Component {
     return (
       <div className="container">
         <aside className="categoria">
-          <Categorias setCategoryId={(event) => this.manCat(event)} refreshItems={this.apiButton} categories={categorias} />
+          <Categorias
+            setCategoryId={(event) => this.manipularCategoria(event)}
+            refreshItems={this.apiButton}
+            categories={categorias}
+          />
         </aside>
         <div className="conteudo">
           <p data-testid="home-initial-message">Digite algum termo de

@@ -5,15 +5,12 @@ import { Home, ShoppingCart, ProductDetail, Checkout } from './pages';
 class Routes extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cart: [] };
+    this.state = {
+      cart: [],
+      loading: true,
+    };
     this.addingToCart = this.addingToCart.bind(this);
     this.setLocalStorage = this.setLocalStorage.bind(this);
-  }
-  componentDidMount() {
-    if (localStorage.getItem('cart') !== null) {
-      const local = JSON.parse(localStorage.getItem('cart'));
-      this.setState({ cart: local });
-    }
   }
   componentWillUnmount() {
     this.setLocalStorage();
@@ -33,6 +30,13 @@ class Routes extends React.Component {
     await this.setLocalStorage();
   }
   render() {
+    if (this.state.loading) {
+      if (localStorage.getItem('cart') !== null) {
+        const local = JSON.parse(localStorage.getItem('cart'));
+        this.setState({ cart: local });
+        this.setState({ loading: false });
+      }
+    }
     const { cart: c } = this.state;
     const f = this.func;
     return (
