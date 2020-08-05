@@ -71,7 +71,10 @@ class Home extends React.Component {
             <button data-testid="query-button" type="button" onClick={() => this.apiButton()}>
               Api
             </button>
-            <CartLink cart={this.props.cart} />
+            <div>
+              <p data-testid="shopping-cart-size">{this.props.q}</p>
+              <CartLink cart={this.props.cart} />
+            </div>
           </div>
           <Items items={items} addingToCart={this.props.func.addingToCart} />
         </div>
