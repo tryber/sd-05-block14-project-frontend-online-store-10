@@ -1,7 +1,7 @@
 import React from 'react';
 import CartLink from '../../components/CartLink/CartLink';
 import AddToCart from '../../components/AddToCart/AddToCart';
-import Comments from  './Comments';
+import Comments from './Comments';
 
 class ProductDetail extends React.Component {
   constructor(props) {
