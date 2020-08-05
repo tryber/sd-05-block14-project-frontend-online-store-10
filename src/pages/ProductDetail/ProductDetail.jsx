@@ -1,6 +1,7 @@
 import React from 'react';
 import CartLink from '../../components/CartLink/CartLink';
 import AddToCart from '../../components/AddToCart/AddToCart';
+import Comments from  './Comments';
 
 class ProductDetail extends React.Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class ProductDetail extends React.Component {
           quantity={1}
         />
         <CartLink cart={this.props.cart} />
+        <Comments />
       </div>
     );
   }
