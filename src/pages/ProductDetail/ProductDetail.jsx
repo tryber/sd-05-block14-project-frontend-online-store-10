@@ -29,7 +29,7 @@ class ProductDetail extends React.Component {
         <AddToCart
           dataTestid="product-detail-add-to-cart"
           item={item}
-          addingToCart={this.props.func}
+          addingToCart={this.props.func.addingToCart[0]}
           quantity={1}
         />
         <CartLink cart={this.props.cart} />

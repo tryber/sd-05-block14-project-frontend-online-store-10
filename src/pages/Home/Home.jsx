@@ -48,7 +48,7 @@ class Home extends React.Component {
   }
 
   async addingToCart(item, quantity) {
-    this.props.func(item, quantity);
+    this.props.func.addingToCart(item, quantity);
   }
 
   render() {
@@ -73,7 +73,7 @@ class Home extends React.Component {
             </button>
             <CartLink cart={this.props.cart} />
           </div>
-          <Items items={items} addingToCart={this.props.func} />
+          <Items items={items} addingToCart={this.props.func.addingToCart} />
         </div>
       </div>
     );

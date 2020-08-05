@@ -4,7 +4,7 @@ import './ShoppingCart.css';
 import ItemCart from './ItemCart';
 
 const ShoppingCart = (props) => {
-  let ct = JSON.parse(localStorage.getItem('Cart'));
+  let ct = JSON.parse(localStorage.getItem('cart'));
   if (props.location.cart) {
     ct = props.location.cart;
   }
@@ -13,7 +13,7 @@ const ShoppingCart = (props) => {
       return (
         <div>
           <Link to="/">Home</Link>
-          { ct.map((prod) => <ItemCart key={prod.id} produto={prod} />)}
+          { ct.map((prod) => <ItemCart key={prod.id} produto={prod} func={props.func} />)}
         </div>
       );
     }
