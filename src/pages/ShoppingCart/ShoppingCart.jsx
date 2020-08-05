@@ -14,6 +14,7 @@ const ShoppingCart = (props) => {
         <div>
           <Link to="/">Home</Link>
           { ct.map((prod) => <ItemCart key={prod.id} produto={prod} func={props.func} />)}
+        <Link to="/checkout"><button data-testid="checkout-products">Checkout</button></Link>
         </div>
       );
     }
